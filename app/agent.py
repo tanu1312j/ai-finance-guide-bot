@@ -17,6 +17,9 @@ from .tools.insurance_model import recommend_insurance
 from .tools.profile_store import upsert_profile, get_profile
 from .tools.market import market_snapshot
 from .tools.market_data import get_stock_quote
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # ---------------------------------------------------------------------
 # Load config
@@ -32,7 +35,15 @@ else:
         "openai": {"model": "gpt-4o-mini", "temperature": 0.2},
         "memory": {"summary_window": 6},
     }
+if "openai" not in CONFIG:
+    CONFIG["openai"] = {}
 
+CONFIG["openai"]["api_key"] = os.getenv("OPENAI_API_KEY")
+
+if not CONFIG["openai"]["api_key"]:
+    raise EnvironmentError(
+        "❌ OPENAI_API_KEY not found. Please set it in .env or as an environment variable."
+    )
 # ---------------------------------------------------------------------
 # Memory buffer
 # ---------------------------------------------------------------------

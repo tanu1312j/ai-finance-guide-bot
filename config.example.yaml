@@ -1,0 +1,14 @@
+provider: bedrock  # options: 'bedrock' or 'openai'
+openai:
+  model: gpt-4o-mini
+  temperature: 0.2
+bedrock:
+  region: us-east-1
+  # Pick a chat model you've enabled in Bedrock (example ID below; adjust as enabled in your account)
+  model_id: anthropic.claude-3-sonnet-20240229-v1:0
+  temperature: 0.2
+ui:
+  show_market_panel: true
+  default_user_id: "user123"
+memory:
+  summary_window: 6  # number of recent turns to keep verbatim; older are summarized

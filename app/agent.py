@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 import os
 import yaml
 from typing import Dict, Any
@@ -17,9 +18,10 @@ from .tools.insurance_model import recommend_insurance
 from .tools.profile_store import upsert_profile, get_profile
 from .tools.market import market_snapshot
 from .tools.market_data import get_stock_quote
-from dotenv import load_dotenv
 
-load_dotenv()
+
+env_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".env"))
+load_dotenv(dotenv_path=env_path)
 
 # ---------------------------------------------------------------------
 # Load config
